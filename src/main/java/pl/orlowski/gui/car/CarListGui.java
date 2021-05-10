@@ -16,10 +16,12 @@ public class CarListGui extends VerticalLayout {
         car.addHierarchyColumn(Car::getRegistration)
                 .setHeader("Registration");
 
-        car.addHierarchyColumn(Car::getBrand)
+        car.addColumn(Car::getBrand)
                 .setHeader("Brand");
         car.addColumn(Car::getModel)
                 .setHeader("Model");
+        car.addColumn(Car::getFuelType)
+                .setHeader("Fuel type");
 
         add(car);
     }

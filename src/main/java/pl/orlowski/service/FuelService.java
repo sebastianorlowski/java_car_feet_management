@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import pl.orlowski.model.Fuel;
 import pl.orlowski.repository.FuelRepository;
 
+import java.text.DecimalFormat;
+
 @Service
 @RequiredArgsConstructor
 public class FuelService {
@@ -25,10 +27,15 @@ public class FuelService {
                 .dateRefueling(fuel.getDateRefueling())
                 .car(fuel.getCar())
                 .price(fuel.getPrice())
-                .fuelPerLiter(fuel.getFuelPerLiter())
+                .pricePerLiter(fuel.getPricePerLiter())
                 .build();
 
         delete(fuel);
         save(newFuel);
+    }
+
+    public float amountOfFuelCalculate(float price, float pricePerLiter) {
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        return Float.parseFloat(decimalFormat.format(price / pricePerLiter));
     }
 }

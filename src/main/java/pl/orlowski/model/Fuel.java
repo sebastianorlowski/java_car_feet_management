@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "fuels")
@@ -17,12 +18,13 @@ import java.sql.Date;
 @RequiredArgsConstructor
 public class Fuel {
 
-    public Fuel(Long id, Date dateRefueling, int kilometerStatus, float price, float fuelPerLiter, Car car) {
+    public Fuel(Long id, LocalDate dateRefueling, int kilometerStatus, float price, float pricePerLiter, float amountOfFuel, Car car) {
         this.id = id;
         this.dateRefueling = dateRefueling;
         this.kilometerStatus = kilometerStatus;
         this.price = price;
-        this.fuelPerLiter = fuelPerLiter;
+        this.pricePerLiter = pricePerLiter;
+        this.amountOfFuel = amountOfFuel;
         this.car = car;
     }
 
@@ -30,14 +32,17 @@ public class Fuel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Date dateRefueling;
+    private LocalDate dateRefueling;
     private int kilometerStatus;
     private float price;
-    private float fuelPerLiter;
+    private float pricePerLiter;
+    private float amountOfFuel;
 
     @ManyToOne
     @JoinColumn
     private Car car;
 
-
+    @ManyToOne
+    @JoinColumn
+    private Owner owner;
 }

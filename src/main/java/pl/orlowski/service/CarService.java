@@ -5,9 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.orlowski.model.Car;
 import pl.orlowski.model.FuelType;
 import pl.orlowski.repository.CarRepository;
-
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
