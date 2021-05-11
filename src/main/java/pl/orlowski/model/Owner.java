@@ -15,13 +15,15 @@ import javax.persistence.*;
 @Builder
 public class Owner {
 
-    public Owner(Long id, Long pesel, String firstName, String lastName, String phoneNumber, String email) {
+    public Owner(Long id, Long pesel, String firstName, String lastName,
+                 String phoneNumber, String email, Car car) {
         this.id = id;
         this.pesel = pesel;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.car = car;
     }
 
     @Id

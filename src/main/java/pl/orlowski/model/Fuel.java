@@ -9,6 +9,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.temporal.ChronoField;
 
 @Entity
 @Table(name = "fuels")
@@ -18,7 +19,8 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 public class Fuel {
 
-    public Fuel(Long id, LocalDate dateRefueling, int kilometerStatus, float price, float pricePerLiter, float amountOfFuel, Car car) {
+    public Fuel(Long id, LocalDate dateRefueling, int kilometerStatus, double price,
+                double pricePerLiter, double amountOfFuel, Car car, Owner owner) {
         this.id = id;
         this.dateRefueling = dateRefueling;
         this.kilometerStatus = kilometerStatus;
@@ -26,6 +28,7 @@ public class Fuel {
         this.pricePerLiter = pricePerLiter;
         this.amountOfFuel = amountOfFuel;
         this.car = car;
+        this.owner = owner;
     }
 
     @Id
@@ -34,9 +37,9 @@ public class Fuel {
 
     private LocalDate dateRefueling;
     private int kilometerStatus;
-    private float price;
-    private float pricePerLiter;
-    private float amountOfFuel;
+    private double price;
+    private double pricePerLiter;
+    private double amountOfFuel;
 
     @ManyToOne
     @JoinColumn
@@ -45,4 +48,5 @@ public class Fuel {
     @ManyToOne
     @JoinColumn
     private Owner owner;
+
 }

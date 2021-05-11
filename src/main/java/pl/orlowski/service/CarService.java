@@ -21,6 +21,21 @@ public class CarService {
         carRepository.delete(car);
     }
 
+    public void editCar(Car car) {
+        Car newCar = Car.builder()
+                .id(car.getId())
+                .registration(car.getRegistration())
+                .brand(car.getBrand())
+                .model(car.getModel())
+                .engineCapacity(car.getEngineCapacity())
+                .enginePower(car.getEnginePower())
+                .fuelType(car.getFuelType())
+                .build();
+
+        delete(car);
+        save(newCar);
+    }
+
     public Car getCarByRegistration(String registration) {
         return carRepository.findCarByRegistration(registration);
     }
@@ -35,20 +50,5 @@ public class CarService {
 
     public List<Car> getCarsByFuelType(FuelType fuelType) {
         return carRepository.findCarByFuelType(fuelType);
-    }
-
-    public void editCar(Car car) {
-        Car newCar = Car.builder()
-                .id(car.getId())
-                .registration(car.getRegistration())
-                .brand(car.getBrand())
-                .model(car.getModel())
-                .engineCapacity(car.getEngineCapacity())
-                .enginePower(car.getEnginePower())
-                .fuelType(car.getFuelType())
-                .build();
-
-        delete(car);
-        save(newCar);
     }
 }

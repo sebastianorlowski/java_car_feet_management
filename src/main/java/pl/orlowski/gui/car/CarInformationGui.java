@@ -9,12 +9,13 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+import pl.orlowski.gui.MainGui;
 import pl.orlowski.model.Car;
 import pl.orlowski.model.Owner;
 import pl.orlowski.service.CarService;
 import pl.orlowski.service.OwnerService;
 
-@Route
+@Route(value = "car/info", layout = MainGui.class)
 public class CarInformationGui extends VerticalLayout {
 
     public CarInformationGui(CarService carService,
@@ -26,11 +27,6 @@ public class CarInformationGui extends VerticalLayout {
 
             String carRegistration = textFieldGetCarByRegistration.getValue();
             Car car = carService.getCarByRegistration(carRegistration);
-
-            new Span("Car: " + car.getBrand() + " " + car.getModel()),
-                    new Span("Fuel type: " + car.getFuelType().getType()),
-                    new Span("Engine capacity and power: " + car.getEngineCapacity() + "cm3 |" +
-                            car.getEnginePower() + "kW")
 
             Details carDetails = new Details(new Span("Car information"),
                     new Span("Car registration: " + carRegistration + "\n" +
@@ -47,7 +43,10 @@ public class CarInformationGui extends VerticalLayout {
                     "Email: " + owner.getEmail() + "\n" +
                     "PESEL" + owner.getPesel()));
 
-            
+            add(carDetails,
+                    ownerDetails);
         });
+        add(textFieldGetCarByRegistration,
+                buttonFindCar);
     }
 }

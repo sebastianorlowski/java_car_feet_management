@@ -34,8 +34,8 @@ public class FuelService {
         save(newFuel);
     }
 
-    public float amountOfFuelCalculate(float price, float pricePerLiter) {
+    public double amountOfFuelCalculate(double price, double pricePerLiter) {
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
-        return Float.parseFloat(decimalFormat.format(price / pricePerLiter));
+        return Double.parseDouble(decimalFormat.format(price / pricePerLiter));
     }
 }

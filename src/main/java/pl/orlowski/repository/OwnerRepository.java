@@ -8,4 +8,16 @@ import pl.orlowski.model.Owner;
 public interface OwnerRepository extends JpaRepository<Owner, Long> {
 
     Owner findOwnerByCarId(Long id);
+
+    Owner findOwnerByEmail(String email);
+
+    Owner findOwnerByPhoneNumber(String phoneNumber);
+
+    Owner findOwnerByPesel(Long pesel);
+
+    boolean existsByPesel(Long pesel);
+
+    boolean existsByPhoneNumber(String phoneNumber);
+
+    boolean existsByEmail(String email);
 }

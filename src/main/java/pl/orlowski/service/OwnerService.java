@@ -37,4 +37,18 @@ public class OwnerService {
         return ownerRepository.findOwnerByCarId(id);
     }
 
+    public Owner findOwnerByPeselOrPhoneOrEmail(String value) {
+        if (value.matches("\\d+")) {
+            if (ownerRepository.existsByPhoneNumber(value)) {
+                return ownerRepository.findOwnerByPhoneNumber(value);
+            } else if (ownerRepository.existsByPesel(Long.parseLong(value))) {
+                return ownerRepository.findOwnerByPesel(Long.parseLong(value));
+            } else {
+                return null;
+            }
+        } else if (ownerRepository.existsByEmail(value)) {
+            return ownerRepository.findOwnerByEmail(value);
+        }
+        return null;
+    }
 }

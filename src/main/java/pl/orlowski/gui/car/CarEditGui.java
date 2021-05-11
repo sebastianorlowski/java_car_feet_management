@@ -8,11 +8,12 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+import pl.orlowski.gui.MainGui;
 import pl.orlowski.model.Car;
 import pl.orlowski.model.FuelType;
 import pl.orlowski.service.CarService;
 
-@Route("car-edit")
+@Route(value = "car-edit", layout = MainGui.class)
 public class CarEditGui extends VerticalLayout {
 
     public CarEditGui(CarService carService) {

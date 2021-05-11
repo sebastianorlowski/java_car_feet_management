@@ -8,6 +8,7 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+import pl.orlowski.gui.MainGui;
 import pl.orlowski.model.Car;
 import pl.orlowski.model.Fuel;
 import pl.orlowski.service.CarService;
@@ -15,7 +16,7 @@ import pl.orlowski.service.FuelService;
 
 import java.time.LocalDate;
 
-@Route("add-fuel-report")
+@Route(value = "add-fuel-report", layout = MainGui.class)
 public class FuelGui extends VerticalLayout {
 
     public FuelGui(CarService carService,
@@ -50,10 +51,10 @@ public class FuelGui extends VerticalLayout {
 
             LocalDate dateRefueling = datePickerDateRefueling.getValue();
             int kilometerStatus = Integer.parseInt(textFieldKilometerStatus.getValue());
-            float price = Float.parseFloat(textFieldPrice.getValue());
-            float pricePerLiter = Float.parseFloat(textFieldPricePerLiter.getValue());
+            double price = Double.parseDouble(textFieldPrice.getValue());
+            double pricePerLiter = Double.parseDouble(textFieldPricePerLiter.getValue());
             Car car = carService.getCarByRegistration(textFieldCarRegistration.getValue());
-            float amountOfFuel = fuelService.amountOfFuelCalculate(price, pricePerLiter);
+            double amountOfFuel = fuelService.amountOfFuelCalculate(price, pricePerLiter);
 
             Fuel fuel = Fuel.builder()
                     .dateRefueling(dateRefueling)

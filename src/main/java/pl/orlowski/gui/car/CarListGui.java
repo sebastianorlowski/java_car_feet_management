@@ -3,10 +3,11 @@ package pl.orlowski.gui.car;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.treegrid.TreeGrid;
 import com.vaadin.flow.router.Route;
+import pl.orlowski.gui.MainGui;
 import pl.orlowski.model.Car;
 import pl.orlowski.service.CarService;
 
-@Route("car/list")
+@Route(value = "", layout = MainGui.class)
 public class CarListGui extends VerticalLayout {
 
     public CarListGui(CarService carService) {
