@@ -4,10 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.orlowski.model.Owner;
 import pl.orlowski.repository.CarRepository;
-import pl.orlowski.service.CarService;
-
-import java.util.Collections;
-import java.util.Collections;
 
 @Component
 @RequiredArgsConstructor

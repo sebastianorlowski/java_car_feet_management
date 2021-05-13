@@ -1,8 +1,6 @@
 package pl.orlowski.gui.car;
 
-import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.details.Details;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
@@ -11,19 +9,14 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.component.treegrid.TreeGrid;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.spring.annotation.SpringComponent;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.orlowski.gui.MainGui;
 import pl.orlowski.model.Car;
 import pl.orlowski.model.Owner;
 import pl.orlowski.service.CarService;
 import pl.orlowski.service.OwnerService;
-
-import java.util.Collection;
-import java.util.List;
 
 @Route(value = "car/info", layout = MainGui.class)
 @SpringComponent
@@ -112,5 +105,4 @@ public class CarInformationGui extends VerticalLayout {
             dialog.open();
         });
     }
-
 }

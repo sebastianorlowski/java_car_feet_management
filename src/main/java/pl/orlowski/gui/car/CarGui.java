@@ -1,6 +1,5 @@
 package pl.orlowski.gui.car;
 
-import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.html.Label;
@@ -13,8 +12,6 @@ import pl.orlowski.gui.MainGui;
 import pl.orlowski.model.Car;
 import pl.orlowski.model.FuelType;
 import pl.orlowski.service.CarService;
-
-import java.util.Collections;
 
 @Route(value = "car", layout = MainGui.class)
 public class CarGui extends VerticalLayout {

@@ -11,28 +11,22 @@ import com.vaadin.flow.spring.annotation.SpringComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.orlowski.gui.MainGui;
 import pl.orlowski.model.Fuel;
-import pl.orlowski.model.Owner;
 import pl.orlowski.model.Report;
 import pl.orlowski.service.CarService;
 import pl.orlowski.service.FuelService;
 import pl.orlowski.service.ReportService;
-
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Route(value = "report", layout = MainGui.class)
 @SpringComponent
 public class ReportGui extends VerticalLayout {
 
     private final ReportService reportService;
-    private final CarService carService;
     private final FuelService fuelService;
 
     @Autowired
-    public ReportGui(ReportService reportService, CarService carService,
-                     FuelService fuelService) {
+    public ReportGui(ReportService reportService, FuelService fuelService) {
         this.reportService = reportService;
-        this.carService = carService;
         this.fuelService = fuelService;
 
         reportAboutCar();
@@ -92,6 +86,4 @@ public class ReportGui extends VerticalLayout {
         add(textFieldGetCarByRegistration,
                 buttonFindCar);
     }
-
-
 }

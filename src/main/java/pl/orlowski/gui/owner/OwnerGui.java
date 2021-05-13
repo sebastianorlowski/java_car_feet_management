@@ -3,7 +3,6 @@ package pl.orlowski.gui.owner;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
@@ -15,6 +14,7 @@ import pl.orlowski.service.OwnerService;
 public class OwnerGui extends VerticalLayout {
 
     public OwnerGui(OwnerService ownerService) {
+
         TextField textFieldPesel = new TextField("Pesel");
         TextField textFieldFirstName = new TextField("First name");
         TextField textFieldLastName = new TextField("Last name");
@@ -39,6 +39,12 @@ public class OwnerGui extends VerticalLayout {
                     .build();
 
             ownerService.save(owner);
+
+            textFieldPesel.clear();
+            textFieldFirstName.clear();
+            textFieldLastName.clear();
+            textFieldEmail.clear();
+            textFieldPhoneNumber.clear();
         });
 
         add(textFieldPesel,

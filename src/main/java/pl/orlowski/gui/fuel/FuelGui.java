@@ -2,7 +2,6 @@ package pl.orlowski.gui.fuel;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.datepicker.DatePicker;
-import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -15,7 +14,6 @@ import pl.orlowski.model.Owner;
 import pl.orlowski.service.CarService;
 import pl.orlowski.service.FuelService;
 import pl.orlowski.service.OwnerService;
-
 import java.time.LocalDate;
 
 @Route(value = "add-fuel-report", layout = MainGui.class)
@@ -42,12 +40,12 @@ public class FuelGui extends VerticalLayout {
             textFieldCarModel.setValue(car.getModel());
         });
 
-        DatePicker datePickerDateRefueling = new DatePicker();
+        DatePicker datePickerDateRefueling = new DatePicker("Date refueling: ");
         datePickerDateRefueling.setValue(LocalDate.now());
 
         TextField textFieldKilometerStatus = new TextField("Kilometer status");
-        TextField textFieldPrice = new TextField("Price (example: 215.17");
-        TextField textFieldPricePerLiter = new TextField("Price liter (example: 5.23");
+        TextField textFieldPrice = new TextField("Price (example: 215.17)");
+        TextField textFieldPricePerLiter = new TextField("Price liter (example: 5.23)");
         Button buttonAddFuel = new Button("Add refueling", new Icon(VaadinIcon.DROP));
 
         buttonAddFuel.addClickListener(buttonClickEvent -> {
@@ -60,6 +58,7 @@ public class FuelGui extends VerticalLayout {
             double amountOfFuel = fuelService.amountOfFuelCalculate(price, pricePerLiter);
             Owner owner = ownerService.getOwnerByCar(car);
 
+            textFieldCarRegistration.clear();
             datePickerDateRefueling.clear();
             textFieldKilometerStatus.clear();
             textFieldCarBrand.clear();

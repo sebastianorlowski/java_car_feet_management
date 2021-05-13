@@ -6,9 +6,6 @@ import pl.orlowski.model.Car;
 import pl.orlowski.model.Owner;
 import pl.orlowski.repository.OwnerRepository;
 import pl.orlowski.validation.owner.OwnerNullValidation;
-
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -67,5 +64,4 @@ public class OwnerService {
                 .map(Owner::getCar)
                 .collect(Collectors.toList());
     }
-
 }

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import pl.orlowski.model.Car;
 import pl.orlowski.model.Fuel;
 import pl.orlowski.repository.FuelRepository;
-
 import java.text.DecimalFormat;
 import java.util.List;
 

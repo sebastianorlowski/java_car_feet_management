@@ -7,8 +7,6 @@ import pl.orlowski.model.Fuel;
 import pl.orlowski.model.Report;
 import pl.orlowski.repository.CarRepository;
 import pl.orlowski.repository.FuelRepository;
-import pl.orlowski.repository.OwnerRepository;
-
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.List;

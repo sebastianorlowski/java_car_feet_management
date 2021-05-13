@@ -28,7 +28,7 @@ public class OwnerEditGui extends VerticalLayout {
         TextField textFieldLastName = new TextField("Last name");
         TextField textFieldPhoneNumber = new TextField("Phone number");
         TextField textFieldEmail = new TextField("Email");
-        ComboBox<String> comboBoxCar = new ComboBox<>("Car: ", getCarWithoutOwner);
+        ComboBox<String> comboBoxCar = new ComboBox<>("Available cars: ", getCarWithoutOwner);
 
         TextField textFieldFindOwner = new TextField("Search owner");
         Button buttonFindOwner = new Button("Find owner", new Icon(VaadinIcon.SEARCH));
@@ -54,6 +54,8 @@ public class OwnerEditGui extends VerticalLayout {
                 textFieldEmail.setReadOnly(true);
                 comboBoxCar.setValue(car.getRegistration());
                 comboBoxCar.setReadOnly(true);
+
+                textFieldFindOwner.clear();
         });
 
         Button buttonEditOwner = new Button("Edit", new Icon(VaadinIcon.EDIT));

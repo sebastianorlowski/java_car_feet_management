@@ -7,13 +7,17 @@ import pl.orlowski.gui.MainGui;
 import pl.orlowski.model.Car;
 import pl.orlowski.service.CarService;
 
+import java.util.List;
+
 @Route(value = "", layout = MainGui.class)
 public class CarListGui extends VerticalLayout {
 
     public CarListGui(CarService carService) {
         TreeGrid<Car> car = new TreeGrid<>();
 
-        car.setItems(carService.getAllCars());
+        List<Car> cars = carService.getAllCars();
+        cars.remove(0);
+        car.setItems(cars);
         car.addHierarchyColumn(Car::getRegistration)
                 .setHeader("Registration");
 

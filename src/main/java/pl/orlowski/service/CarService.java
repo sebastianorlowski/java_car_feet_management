@@ -3,11 +3,9 @@ package pl.orlowski.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.orlowski.model.Car;
-import pl.orlowski.model.FuelType;
 import pl.orlowski.model.Owner;
 import pl.orlowski.repository.CarRepository;
 import pl.orlowski.repository.OwnerRepository;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -60,9 +58,11 @@ public class CarService {
     }
 
     public List<String> getCarsWithoutOwnerByRegistration() {
+
         List<String> cars = carRepository.findAll().stream()
                 .map(Car::getRegistration)
                 .collect(Collectors.toList());
+
         List<Owner> ownersWithCar = ownerRepository.findAll();
 
         List<String> carWithOwner = ownersWithCar.stream()
