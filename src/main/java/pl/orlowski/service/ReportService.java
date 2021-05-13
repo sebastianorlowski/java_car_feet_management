@@ -48,10 +48,11 @@ public class ReportService {
 
     public Double getTotalPriceForFuel(List<Fuel> fuels) {
         if (!fuels.isEmpty()) {
-            return fuels.stream()
+            DecimalFormat decimalFormat = new DecimalFormat("#.##");
+            return Double.parseDouble(decimalFormat.format(fuels.stream()
                     .map(Fuel::getPrice)
                     .reduce(Double::sum)
-                    .get();
+                    .get()));
         }
         return 0.0;
     }
@@ -67,11 +68,14 @@ public class ReportService {
     }
 
     public Double getAverageFuelConsumption(List<Fuel> fuels) {
-        double kilometer = fuels.get(fuels.size() - 1).getKilometerStatus() - fuels.get(0).getKilometerStatus();
-        kilometer /= 100;
-        double totalFuel = getTotalAmountOfFuelConsumption(fuels) - fuels.get(fuels.size() - 1).getAmountOfFuel();
-        DecimalFormat decimalFormat = new DecimalFormat("#.##");
-        return Double.parseDouble(decimalFormat.format(totalFuel / kilometer));
+        if (fuels.size() > 1) {
+            double kilometer = fuels.get(fuels.size() - 1).getKilometerStatus() - fuels.get(0).getKilometerStatus();
+            kilometer /= 100;
+            double totalFuel = getTotalAmountOfFuelConsumption(fuels) - fuels.get(fuels.size() - 1).getAmountOfFuel();
+            DecimalFormat decimalFormat = new DecimalFormat("#.##");
+            return Double.parseDouble(decimalFormat.format(totalFuel / kilometer));
+        }
+        return 0.0;
     }
 
     public LocalDate getLastRefueling(List<Fuel> fuels) {

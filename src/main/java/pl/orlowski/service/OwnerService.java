@@ -64,4 +64,8 @@ public class OwnerService {
                 .map(Owner::getCar)
                 .collect(Collectors.toList());
     }
+
+    public List<Owner> getAllOwners() {
+        return ownerRepository.findAll();
+    }
 }

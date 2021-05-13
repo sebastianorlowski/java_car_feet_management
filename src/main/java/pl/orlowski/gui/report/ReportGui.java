@@ -18,13 +18,11 @@ import pl.orlowski.service.ReportService;
 import java.util.List;
 
 @Route(value = "report", layout = MainGui.class)
-@SpringComponent
 public class ReportGui extends VerticalLayout {
 
     private final ReportService reportService;
     private final FuelService fuelService;
 
-    @Autowired
     public ReportGui(ReportService reportService, FuelService fuelService) {
         this.reportService = reportService;
         this.fuelService = fuelService;

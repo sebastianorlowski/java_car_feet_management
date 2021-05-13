@@ -10,8 +10,6 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.spring.annotation.SpringComponent;
-import org.springframework.beans.factory.annotation.Autowired;
 import pl.orlowski.gui.MainGui;
 import pl.orlowski.model.Car;
 import pl.orlowski.model.Owner;
@@ -19,13 +17,11 @@ import pl.orlowski.service.CarService;
 import pl.orlowski.service.OwnerService;
 
 @Route(value = "car/info", layout = MainGui.class)
-@SpringComponent
 public class CarInformationGui extends VerticalLayout {
 
     private final OwnerService ownerService;
     private final CarService carService;
 
-    @Autowired
     public CarInformationGui(OwnerService ownerService,
                              CarService carService) {
         this.ownerService = ownerService;

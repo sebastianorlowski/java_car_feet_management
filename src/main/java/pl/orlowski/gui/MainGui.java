@@ -15,6 +15,7 @@ import pl.orlowski.gui.car.CarListGui;
 import pl.orlowski.gui.fuel.FuelGui;
 import pl.orlowski.gui.owner.OwnerEditGui;
 import pl.orlowski.gui.owner.OwnerGui;
+import pl.orlowski.gui.owner.OwnerListGui;
 import pl.orlowski.gui.report.ReportGui;
 
 public class MainGui extends AppLayout {
@@ -44,6 +45,7 @@ public class MainGui extends AppLayout {
         RouterLink carInformation = new RouterLink("Car information", CarInformationGui.class);
         RouterLink fuel = new RouterLink("Fuel", FuelGui.class);
         RouterLink owner = new RouterLink("Owner", OwnerGui.class);
+        RouterLink ownerList = new RouterLink("Owner list", OwnerListGui.class);
         RouterLink ownerEdit = new RouterLink("Owner Edit", OwnerEditGui.class);
         RouterLink report = new RouterLink("Report about car", ReportGui.class);
         Anchor logout = new Anchor("logout", "Logout");
@@ -55,6 +57,7 @@ public class MainGui extends AppLayout {
                 carInformation,
                 fuel,
                 owner,
+                ownerList,
                 ownerEdit,
                 report,
                 logout

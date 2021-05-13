@@ -12,5 +12,17 @@ insert into cars (id, brand, engine_capacity, engine_power, fuel_type, model, re
 insert into cars (id, brand, engine_capacity, engine_power, fuel_type, model, registration) values (12, "Toyota", "1995", "150", 2, "Avensis", "GD2891T");
 
 
+INSERT INTO `owners` VALUES (1,'herbertsims@gmail.com','Herbert','Sims',90111500074,'666605600',2),
+                            (2,'derek@gmail.com','Derek','Reed',88080103277,'611762178',3),
+                            (3,'franklin@gmail.com','Franklin','Currey',99121203272,'781922019',4),
+                            (4,'knight@gmail.com','William','Knight',78100210053,'881921642',1),
+                            (5,'roy@gmail.com','Roy','Ballard',87010212391,'781028192',1);
+
+
+INSERT INTO `fuels` VALUES (1,33.29,'2021-05-13',272112,78.24,2.35,2,1),(2,42.12,'2021-05-14',272678,102.78,2.44,2,1),
+                           (3,35.65,'2021-05-01',117281,192.17,5.39,3,2),(4,47.8,'2021-05-03',118013,254.78,5.33,3,2),
+                           (5,48.09,'2021-05-06',119011,266.88,5.55,3,2),(6,38.07,'2021-05-11',119892,199.88,5.25,3,2),
+                           (7,51.01,'2021-05-13',120891,287.67,5.64,3,2),(8,55.21,'2021-05-02',12031,313.58,5.68,4,3),
+                           (9,55.34,'2021-05-04',13011,303.28,5.48,4,3),(11,56.34,'2021-05-07',13988,299.73,5.32,4,3);
 
 
