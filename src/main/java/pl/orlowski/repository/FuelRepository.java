@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import pl.orlowski.model.Car;
 import pl.orlowski.model.Fuel;
+import pl.orlowski.model.Owner;
 
 import java.util.List;
 
@@ -11,4 +12,5 @@ import java.util.List;
 public interface FuelRepository extends JpaRepository<Fuel, Long> {
 
     List<Fuel> findFuelByCar(Car car);
+
 }

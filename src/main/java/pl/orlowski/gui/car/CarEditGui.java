@@ -19,7 +19,7 @@ public class CarEditGui extends VerticalLayout {
     public CarEditGui(CarService carService) {
 
         TextField textFieldFindCar = new TextField("Get car by registration");
-        Button buttonFindCar = new Button("Find car", new Icon(VaadinIcon.CAR));
+        Button buttonFindCar = new Button("Find car", new Icon(VaadinIcon.SEARCH));
 
         TextField textFieldId = new TextField("ID: ");
         textFieldId.setReadOnly(true);
@@ -29,7 +29,7 @@ public class CarEditGui extends VerticalLayout {
         TextField textFieldEngineCapacity = new TextField("Engine capacity: ");
         TextField textFieldEnginePower = new TextField("Engine power(kw): ");
         ComboBox<FuelType> comboBoxFuelType = new ComboBox<>("Type:", FuelType.values());
-        Button buttonUpdateCar = new Button("Add new car", new Icon(VaadinIcon.CAR));
+        Button buttonUpdateCar = new Button("Update car", new Icon(VaadinIcon.CAR));
         Label labelUpdateCar = new Label();
 
         buttonFindCar.addClickListener(buttonClickEvent -> {
@@ -66,7 +66,6 @@ public class CarEditGui extends VerticalLayout {
 
         add(textFieldFindCar,
                 buttonFindCar,
-
                 textFieldRegistration,
                 textFieldBrand,
                 textFieldModel,

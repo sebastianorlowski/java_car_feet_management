@@ -11,8 +11,10 @@ import com.vaadin.flow.router.Route;
 import pl.orlowski.gui.MainGui;
 import pl.orlowski.model.Car;
 import pl.orlowski.model.Fuel;
+import pl.orlowski.model.Owner;
 import pl.orlowski.service.CarService;
 import pl.orlowski.service.FuelService;
+import pl.orlowski.service.OwnerService;
 
 import java.time.LocalDate;
 
@@ -20,7 +22,8 @@ import java.time.LocalDate;
 public class FuelGui extends VerticalLayout {
 
     public FuelGui(CarService carService,
-                   FuelService fuelService) {
+                   FuelService fuelService,
+                   OwnerService ownerService) {
 
         TextField textFieldGetCarByRegistration = new TextField("Please enter car registration");
         Button buttonGetCarInformation = new Button("Find car", new Icon(VaadinIcon.SEARCH));
@@ -42,9 +45,9 @@ public class FuelGui extends VerticalLayout {
         DatePicker datePickerDateRefueling = new DatePicker();
         datePickerDateRefueling.setValue(LocalDate.now());
 
-        TextField textFieldKilometerStatus = new TextField("Kilometer status (example: 68172");
+        TextField textFieldKilometerStatus = new TextField("Kilometer status");
         TextField textFieldPrice = new TextField("Price (example: 215.17");
-        TextField textFieldPricePerLiter = new TextField("Price per liter (example: 5.23");
+        TextField textFieldPricePerLiter = new TextField("Price liter (example: 5.23");
         Button buttonAddFuel = new Button("Add refueling", new Icon(VaadinIcon.DROP));
 
         buttonAddFuel.addClickListener(buttonClickEvent -> {
@@ -55,6 +58,15 @@ public class FuelGui extends VerticalLayout {
             double pricePerLiter = Double.parseDouble(textFieldPricePerLiter.getValue());
             Car car = carService.getCarByRegistration(textFieldCarRegistration.getValue());
             double amountOfFuel = fuelService.amountOfFuelCalculate(price, pricePerLiter);
+            Owner owner = ownerService.getOwnerByCar(car);
+
+            datePickerDateRefueling.clear();
+            textFieldKilometerStatus.clear();
+            textFieldCarBrand.clear();
+            textFieldCarModel.clear();
+            textFieldGetCarByRegistration.clear();
+            textFieldPrice.clear();
+            textFieldPricePerLiter.clear();
 
             Fuel fuel = Fuel.builder()
                     .dateRefueling(dateRefueling)
@@ -63,6 +75,7 @@ public class FuelGui extends VerticalLayout {
                     .pricePerLiter(pricePerLiter)
                     .car(car)
                     .amountOfFuel(amountOfFuel)
+                    .owner(owner)
                     .build();
 
             fuelService.save(fuel);

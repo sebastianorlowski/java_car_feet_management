@@ -14,12 +14,12 @@ import pl.orlowski.model.Car;
 import pl.orlowski.model.FuelType;
 import pl.orlowski.service.CarService;
 
+import java.util.Collections;
+
 @Route(value = "car", layout = MainGui.class)
 public class CarGui extends VerticalLayout {
 
     public CarGui(CarService carService) {
-        Button updateCar = new Button("Update car", new Icon(VaadinIcon.BUILDING));
-        updateCar.addClickListener(buttonClickEvent -> UI.getCurrent().navigate("car-edit"));
 
         TextField textFieldRegistration = new TextField("Registration: ");
         TextField textFieldBrand = new TextField("Brand: ");
@@ -50,8 +50,7 @@ public class CarGui extends VerticalLayout {
             labelAddCar.setText("Youre add new car!");
         });
 
-        add(updateCar,
-                textFieldRegistration,
+        add(textFieldRegistration,
                 textFieldBrand,
                 textFieldModel,
                 textFieldEngineCapacity,

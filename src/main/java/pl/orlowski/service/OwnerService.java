@@ -2,16 +2,25 @@ package pl.orlowski.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import pl.orlowski.model.Car;
 import pl.orlowski.model.Owner;
 import pl.orlowski.repository.OwnerRepository;
+import pl.orlowski.validation.owner.OwnerNullValidation;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class OwnerService {
 
     private final OwnerRepository ownerRepository;
+    private final OwnerNullValidation ownerNullValidation;
 
     public void save(Owner owner) {
+        owner = ownerNullValidation.ownerIsNull(owner);
         ownerRepository.save(owner);
     }
 
@@ -25,19 +34,19 @@ public class OwnerService {
                 .firstName(owner.getFirstName())
                 .lastName(owner.getLastName())
                 .email(owner.getEmail())
+                .pesel(owner.getPesel())
                 .phoneNumber(owner.getPhoneNumber())
                 .car(owner.getCar())
                 .build();
 
-        delete(owner);
         save(newOwner);
     }
 
-    public Owner getOwnerByCarId(Long id) {
-        return ownerRepository.findOwnerByCarId(id);
+    public Owner getOwnerByCar(Car car) {
+        return ownerRepository.findOwnerByCar(car);
     }
 
-    public Owner findOwnerByPeselOrPhoneOrEmail(String value) {
+    public Owner getOwnerByPeselOrPhoneOrEmail(String value) {
         if (value.matches("\\d+")) {
             if (ownerRepository.existsByPhoneNumber(value)) {
                 return ownerRepository.findOwnerByPhoneNumber(value);
@@ -51,4 +60,12 @@ public class OwnerService {
         }
         return null;
     }
+
+    public List<Car> getOwnersWithCar() {
+        List<Owner> owners = ownerRepository.findAll();
+        return owners.stream()
+                .map(Owner::getCar)
+                .collect(Collectors.toList());
+    }
+
 }

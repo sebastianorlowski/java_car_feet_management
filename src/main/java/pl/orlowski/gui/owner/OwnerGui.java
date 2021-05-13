@@ -28,7 +28,7 @@ public class OwnerGui extends VerticalLayout {
             String firstName = textFieldFirstName.getValue();
             String lastName = textFieldLastName.getValue();
             String phoneNumber = textFieldPhoneNumber.getValue();
-            String email = textFieldPhoneNumber.getValue();
+            String email = textFieldEmail.getValue();
 
             Owner owner = Owner.builder()
                     .pesel(pesel)

@@ -3,6 +3,9 @@ package pl.orlowski.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Builder
@@ -33,4 +36,5 @@ public class Car {
     private FuelType fuelType;
     private String engineCapacity;
     private String enginePower;
+
 }

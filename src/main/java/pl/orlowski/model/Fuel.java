@@ -1,15 +1,12 @@
 package pl.orlowski.model;
 
-
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.time.LocalDate;
-import java.time.temporal.ChronoField;
 
 @Entity
 @Table(name = "fuels")

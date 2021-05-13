@@ -1,13 +1,17 @@
 package pl.orlowski.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import pl.orlowski.model.Car;
 import pl.orlowski.model.Owner;
+
+import java.util.List;
 
 @Repository
 public interface OwnerRepository extends JpaRepository<Owner, Long> {
 
-    Owner findOwnerByCarId(Long id);
+    Owner findOwnerByCar(Car car);
 
     Owner findOwnerByEmail(String email);
 
@@ -20,4 +24,5 @@ public interface OwnerRepository extends JpaRepository<Owner, Long> {
     boolean existsByPhoneNumber(String phoneNumber);
 
     boolean existsByEmail(String email);
+
 }

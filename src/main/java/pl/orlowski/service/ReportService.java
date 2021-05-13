@@ -1,6 +1,7 @@
 package pl.orlowski.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import pl.orlowski.model.Car;
 import pl.orlowski.model.Fuel;
 import pl.orlowski.model.Report;
@@ -8,17 +9,16 @@ import pl.orlowski.repository.CarRepository;
 import pl.orlowski.repository.FuelRepository;
 import pl.orlowski.repository.OwnerRepository;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.DoubleStream;
-import java.util.stream.LongStream;
 
 @RequiredArgsConstructor
+@Service
 public class ReportService {
 
     private final CarRepository carRepository;
     private final FuelRepository fuelRepository;
-    private final OwnerRepository ownerRepository;
 
     public Report getTotalReportCar(String registration) {
         List<Fuel> info = getFuelInformation(registration);
@@ -38,31 +38,42 @@ public class ReportService {
     }
 
     public Long getTotalAmountOfFuelConsumption(List<Fuel> fuels) {
-         return Long.valueOf(String.valueOf(fuels.stream()
-                .map(Fuel::getAmountOfFuel)
-                .reduce(Double::sum)
-                .get()));
+        if (!fuels.isEmpty()) {
+            return fuels.stream()
+                    .map(Fuel::getAmountOfFuel)
+                    .reduce(Double::sum)
+                    .get()
+                    .longValue();
+        }
+        return 0L;
     }
 
-    public Long getTotalPriceForFuel(List<Fuel> fuels) {
-        return Long.valueOf(String.valueOf(fuels.stream()
-                .map(Fuel::getPrice)
-                .reduce(Double::sum)
-                .get()));
+    public Double getTotalPriceForFuel(List<Fuel> fuels) {
+        if (!fuels.isEmpty()) {
+            return fuels.stream()
+                    .map(Fuel::getPrice)
+                    .reduce(Double::sum)
+                    .get();
+        }
+        return 0.0;
     }
 
     public Integer getKilometerStatus(List<Fuel> fuels) {
-        return fuels.stream()
-                .map(Fuel::getKilometerStatus)
-                .reduce(Integer::sum)
-                .get();
+        if (!fuels.isEmpty()) {
+            return fuels.stream()
+                    .map(Fuel::getKilometerStatus)
+                    .reduce((first, second) -> second)
+                    .get();
+        }
+        return 0;
     }
 
     public Double getAverageFuelConsumption(List<Fuel> fuels) {
         double kilometer = fuels.get(fuels.size() - 1).getKilometerStatus() - fuels.get(0).getKilometerStatus();
         kilometer /= 100;
-        Long totalFuel = getTotalAmountOfFuelConsumption(fuels);
-        return totalFuel / kilometer;
+        double totalFuel = getTotalAmountOfFuelConsumption(fuels) - fuels.get(fuels.size() - 1).getAmountOfFuel();
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        return Double.parseDouble(decimalFormat.format(totalFuel / kilometer));
     }
 
     public LocalDate getLastRefueling(List<Fuel> fuels) {

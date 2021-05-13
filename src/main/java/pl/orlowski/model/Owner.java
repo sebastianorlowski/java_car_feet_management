@@ -6,13 +6,16 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "owners")
 @Setter
 @Getter
-@RequiredArgsConstructor
 @Builder
+@RequiredArgsConstructor
 public class Owner {
 
     public Owner(Long id, Long pesel, String firstName, String lastName,
@@ -35,7 +38,7 @@ public class Owner {
     private String phoneNumber;
     private String email;
 
-    @OneToOne
-    @JoinColumn
+    @ManyToOne
     private Car car;
+
 }

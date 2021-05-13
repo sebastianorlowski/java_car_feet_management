@@ -4,14 +4,19 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.orlowski.model.Car;
 import pl.orlowski.model.FuelType;
+import pl.orlowski.model.Owner;
 import pl.orlowski.repository.CarRepository;
-import java.util.List;
+import pl.orlowski.repository.OwnerRepository;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class CarService {
 
     private final CarRepository carRepository;
+    private final OwnerRepository ownerRepository;
 
     public void save(Car car) {
         carRepository.save(car);
@@ -22,6 +27,7 @@ public class CarService {
     }
 
     public void editCar(Car car) {
+
         Car newCar = Car.builder()
                 .id(car.getId())
                 .registration(car.getRegistration())
@@ -32,7 +38,6 @@ public class CarService {
                 .fuelType(car.getFuelType())
                 .build();
 
-        delete(car);
         save(newCar);
     }
 
@@ -48,7 +53,25 @@ public class CarService {
         return carRepository.findCarByBrand(brand);
     }
 
-    public List<Car> getCarsByFuelType(FuelType fuelType) {
-        return carRepository.findCarByFuelType(fuelType);
+    public List<String> getCarsByRegistration() {
+        return getAllCars().stream()
+                .map(Car::getRegistration)
+                .collect(Collectors.toList());
+    }
+
+    public List<String> getCarsWithoutOwnerByRegistration() {
+        List<String> cars = carRepository.findAll().stream()
+                .map(Car::getRegistration)
+                .collect(Collectors.toList());
+        List<Owner> ownersWithCar = ownerRepository.findAll();
+
+        List<String> carWithOwner = ownersWithCar.stream()
+                .map(Owner::getCar)
+                .map(Car::getRegistration)
+                .collect(Collectors.toList());
+
+        cars.removeAll(carWithOwner);
+
+        return cars;
     }
 }
